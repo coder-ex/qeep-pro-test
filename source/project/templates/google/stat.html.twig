@@ -1,0 +1,39 @@
+{% extends 'default.html.twig' %}
+
+{% block title %}{{ meta.title }}{% endblock %}
+
+{#{% block styles %}#}
+{#    <script src="js/1c78e9a3fcb506b8f8fbf3e24d02f7bc.js"></script>#}
+{#{% endblock %}#}
+
+{% block content %}
+    <br>
+    <div class="container top-indent-header">
+        {% if state == 'ok' %}
+            <div class="table-responsive tableFixHead top-indent-header">
+                <table class="table table-bordered table-hover table-sm">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        {% for key in th_tbl %}
+                            <th scope="col">{{ key.name }}</th>
+                        {% endfor %}
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for id, unit in data %}
+                        <tr>
+                            <th scope="row" style="color: white; background: #daa520;">{{ id+1 }}</th>
+                            {% for a, b in unit %}
+                                <td style="white-space: nowrap;overflow: hidden;">{{ b.strim }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <h3 class="my">{{ data }}</h3>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,17 @@
+###> General for docker container ###
+/.idea/
+/.git/
+/source/db/
+/source/logs/
+/tmp_src/
+###> General for docker container ###
+
+###> symfony/framework-bundle ###
+/source/project/.env.local
+/source/project/.env.local.php
+/source/project/.env.*.local
+/source/project/public/bundles/
+/source/project/node_modules/
+/source/project/var/
+/source/project/vendor/
+###< symfony/framework-bundle ###

@@ -1,0 +1,82 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+html,
+body {
+    font-size:16px;
+    color:#333333;
+    font-family:Arial,serif;
+    height: 100%;
+}
+/*.wrapper {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    min-height: 100%;*/
+/*}*/
+.header {
+    min-height: 35px;
+    box-shadow: 0px 0px 5.7px 0.3px rgba(115, 115, 115, 0.294);
+    margin-bottom: 0px;
+    margin-top: 0px;
+    background-color: #ffffff;
+    position: fixed; /* Фиксированное положение */
+    width: 100%;
+    top: 0px;
+    padding: 1px 10px; /* Поля вокруг текста */
+    z-index: 99999;
+}
+.top-indent-header {
+    margin-top: 25px !important;
+}
+
+.tableFixHead    { overflow-y: auto; height: 650px; }
+.tableFixHead th { position: sticky; top: 0; }
+/* Just common table stuff. Really. */
+table  { border-collapse: collapse; width: 100%; }
+th, td { padding: 8px 16px; }
+th     { background:#eee; }
+.footer {
+    flex: 0 0 auto;
+}
+
+footer {
+    padding: 20px 0 5px;
+    background-color: #e0e0e0; /*#e9ecef;*/
+}
+footer .list-inline {
+    margin:0;
+    padding:0;
+}
+footer .copyright {
+    font-size:14px;
+    margin-bottom:0;
+    text-align:center;
+}
+.head-block {
+    width: 100%;
+    margin-bottom: 0;
+    height: 30px;
+    display: inline-block;
+    color: #fff;
+}
+.head-block .icon {
+    float: left;
+    height: 100%;
+    text-align: center;
+    position: relative;
+    width: 10%;
+    background-color: #0a67aa;
+}
+.head-block .title {
+    padding-left: 30px;
+    line-height: 24px;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-family: 'Charis SIL';
+    float: right;
+    line-height: normal;
+    width: 90%;
+    height: 100%;
+    background-color: #0F8DE7;
+}

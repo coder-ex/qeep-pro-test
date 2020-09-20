@@ -1,0 +1,72 @@
+version: "3.5"
+
+services:
+  php-apache:
+    build: ./docker/php-apache
+    container_name: qeep-php-apache
+    volumes:
+      - ${APP_PATH_HOST}:${APP_PATH_CONTAINER}
+      - ${APP_PATH_HOST}/logs/apache:/var/log/httpd
+      - ${APP_PATH_HOST}/logs/apache:/var/log/apache2
+      - ${APP_PATH_HOST}/logs/xdebug:/var/log/xdebug
+    working_dir: ${APP_PATH_CONTAINER}
+    environment:
+      XDEBUG_CONFIG: "remote_host=192.168.221.1 remote_enable=1"
+      PHP_IDE_CONFIG: "serverName=Docker"
+    ports:
+      - "80:80"
+    networks:
+      - internal
+
+  mysql:
+    build:
+      context: ./docker/mysql
+    container_name: qeep-mysql
+    command: --default-authentication-plugin=mysql_native_password
+    user: '1000'
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: qwertynet
+      MYSQL_DATABASE: dbsite
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: user_password
+    volumes:
+      - ${DB_PATH_HOST}:/var/lib/mysql
+    ports:
+      - "33060:3306"
+    depends_on:
+      - php-apache
+    networks:
+      internal:
+        ipv4_address: 192.168.221.4
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: qeep-phpmyadmin
+    depends_on:
+      - mysql
+    environment:
+      - PMA_ARBITRARY=1
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      PMA_ARBITRARY: 1
+      PMA_HOST: mysql
+      PMA_USER: admin
+      PMA_PASSWORD: user_password
+    volumes:
+      - /session
+    networks:
+      - internal
+
+
+networks:
+  internal:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.221.0/28
+
+
